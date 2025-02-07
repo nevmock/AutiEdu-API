@@ -300,7 +300,7 @@ class UserControllerTest {
         user.setPhoneNumber("08511111111111");
         user.setEnabledMusic(true);
         user.setToken("token");
-        user.setTokenExpiredAt(System.currentTimeMillis() + 1000 * 60 * 60);
+        user.setTokenExpiredAt(System.currentTimeMillis() + 1000);
         userRepository.save(user);
 
         log.info("User from Test : {}", user.getName());
