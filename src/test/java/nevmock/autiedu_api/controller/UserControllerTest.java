@@ -303,8 +303,6 @@ class UserControllerTest {
         user.setTokenExpiredAt(System.currentTimeMillis() + 1000);
         userRepository.save(user);
 
-        log.info("User from Test : {}", user.getName());
-
         LearningModule learningModule = new LearningModule();
         learningModule.setName("Interaksi Sosial");
         learningModule.setDescription("Desc interaksi sosisal");
