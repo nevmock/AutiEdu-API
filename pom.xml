@@ -87,6 +87,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<finalName>autiedu-api</finalName>
 	</build>
 
 </project>
