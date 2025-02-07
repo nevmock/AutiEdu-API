@@ -2,6 +2,7 @@ package nevmock.autiedu_api.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import nevmock.autiedu_api.entity.LearningModule;
 import nevmock.autiedu_api.entity.User;
 import nevmock.autiedu_api.repository.LearningModuleRepository;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Slf4j
 class UserControllerTest {
 
     @Autowired
@@ -298,8 +300,10 @@ class UserControllerTest {
         user.setPhoneNumber("08511111111111");
         user.setEnabledMusic(true);
         user.setToken("token");
-        user.setTokenExpiredAt(System.currentTimeMillis() - 10000);
+        user.setTokenExpiredAt(System.currentTimeMillis() + 1000 * 60 * 60);
         userRepository.save(user);
+
+        log.info("User from Test : {}", user.getName());
 
         LearningModule learningModule = new LearningModule();
         learningModule.setName("Interaksi Sosial");

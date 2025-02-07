@@ -60,6 +60,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public WebResponse<TopicResponse> createTopic(User user, @RequestBody CreateTopicRequest request) {
+        log.info("User : {}", user);
         TopicResponse topicResponse = userService.createTopic(user, request);
 
         return WebResponse.<TopicResponse>builder().data(topicResponse).build();
