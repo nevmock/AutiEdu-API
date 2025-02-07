@@ -1,0 +1,7 @@
+version: '3'
+services:
+  lysaai-core-api:
+    image: kevinirawand/autiedu-api:latest
+    restart: always
+    ports:
+      - "8080:8080"
