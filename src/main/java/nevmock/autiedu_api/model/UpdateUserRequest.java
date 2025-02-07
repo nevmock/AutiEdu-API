@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
 
 @Data
 @AllArgsConstructor
@@ -27,4 +28,9 @@ public class UpdateUserRequest {
 
     @Size(max = 100)
     private String phoneNumber;
+
+    @NumberFormat
+    private Integer age;
+
+    private boolean isEnabledMusic;
 }

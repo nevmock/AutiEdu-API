@@ -22,13 +22,5 @@ public class RegisterUserRequest {
     @Size( max = 100)
     private String password;
 
-    private String role = "user";
-
     private String name;
-
-    private String className;
-
-    private String phoneNumber;
-
-    private boolean isEnabledMusic = true;
 }

@@ -7,11 +7,13 @@ import nevmock.autiedu_api.model.*;
 import nevmock.autiedu_api.repository.UserRepository;
 import nevmock.autiedu_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.Media;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -63,5 +65,27 @@ public class UserController {
         TopicResponse topicResponse = userService.createTopic(user, request);
 
         return WebResponse.<TopicResponse>builder().data(topicResponse).build();
+    }
+
+
+    @GetMapping(
+            path = "/api/v1/users/topic",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<List<TopicResponse>> getUserTopic(User user) {
+        List<TopicResponse> userTopics = userService.getTopics(user);
+        return WebResponse.<List<TopicResponse>>builder().data(userTopics).build();
+    }
+
+
+    @PatchMapping(
+            path = "/api/v1/users/topic",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<UserTopicResponse> updateUserTopic(User user, @RequestBody UpdateUserTopicRequest request) {
+        UserTopicResponse userTopicResponse = userService.updateTopic(user, request);
+        return WebResponse.<UserTopicResponse>builder().data(userTopicResponse).build();
     }
 }

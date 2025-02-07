@@ -1,0 +1,151 @@
+buatkan saya data dengan spesifikasi:
+
+
+1. learning module Interaksi Sosial mempunyai 3 topik yaitu :
+
+a. Mencuci tangan :
+    description : Belajar mencuci tangan
+    method : Mencocokan Gambar
+    level : 0
+
+    berikut adalah question nya:
+        1.  level : 0
+            media_type : video
+            src : /uploads/videos/mencuci_tangan.mp4
+            text :  Mencuci tangan merupakan salah satu kegiatan penting yang dilakukan untuk menjaga kebersihan dan sanitasi diri, khususnya sebelum makan.
+
+                           Berikut enam langkah dalam mencuci tangan yang baik dan benar:
+                           1. Membasahi tangan
+                           2. Menuang sabun
+                           3. Menggosok sela jari
+                           4. Menggosok punggung tangan
+                           5. Menggosok kuku
+                           6. Membilas tangan yang sudah dicuci
+                           7. Mengeringkan tangan dengan lap atau tisu kering
+
+                           Teman-teman jangan lupa untuk mencuci tangan sebelum makan ya!
+            is_multiple_option : null
+
+        2.  level : 1
+            media_type : image
+            src : /uploads/images/membasahi_tangan.png
+            text: null
+            is_multiple_option : false
+
+            text option nya adalah:
+                1. Membasahi Tangan
+                2. Menggosok Kuku
+                3. Menuang Sabun
+                4. Menggosok Sela Jari
+
+            answer nya adalah option nomer 1
+
+        3.  level : 1
+                media_type : images
+                src : /uploads/images/menuang_sabun.png
+                text : null
+                is_multiple_option : false
+
+             text option nya adalah:
+                1. Mengelap Tangan
+                2. Menuang Sabun
+                3. Menggosok Kuku
+                4. Membilas Tangan
+
+             answer nya adalah option nomer 2
+
+b. Cara berkomunikasi
+    description : Belajar cara berkomunikasi
+    method : Mencocokan Gambar
+    level : 0
+
+    berikut adalah question nya:
+        1.  level : 0
+            media_type : video
+            src : /uploads/videos/cara_berkomunikasi.mp4
+            text :  Berkomunikasi sangat penting untuk membantu kita dalam bersosialisasi dengan orang yang kita kenal.
+
+                    Empat cara berkomunikasi:
+                    1. Menyapa
+                    2. Meminta tolong
+                    3. Minta maaf
+                    4. Berterima kasih
+
+                    Terapkan empat cara di atas dalam kehidupan sehari-hari ya!
+            is_multiple_option : null
+
+        2.  level : 1
+            media_type : image
+            src : /uploads/images/Menyapa.png
+            text: null
+            is_multiple_option : false
+
+            text option nya adalah:
+                1. Menyapa
+                2. Minta Tolong
+                3. Berterima Kasih
+                4. Minta Maaf
+
+            answer nya adalah option nomer 1
+
+        3.  level : 1
+                media_type : images
+                src : /uploads/images/Berterima_Kasih.png
+                text : null
+                is_multiple_option : false
+
+             text option nya adalah:
+                1. Berterima Kasih
+                2. Minta Maaf
+                3. Berterima Kasih
+                4. Menyapa
+
+             answer nya adalah option nomer 2
+
+c. Mengenal ekspresi
+    description : Belajar mengenal ekspresi
+    method : Mencocokan Gambar
+    level : 0
+
+    berikut adalah question nya:
+        1.  level : 0
+            media_type : video
+            src : /uploads/videos/mengenal_ekspresi.mp4
+            text :  Sebagai manusia, kita mempunyai emosi untuk mengekspresikan akan suatu hal yang terjadi
+
+                    Empat jenis emosi:
+                    1. Senang
+                    2. Sedih
+                    3. Marah
+                    4. Takut
+
+                    Kenali emosi di diri teman-teman ya!
+            is_multiple_option : null
+
+        2.  level : 1
+            media_type : image
+            src : /uploads/images/marah.png
+            text: null
+            is_multiple_option : false
+
+            text option nya adalah:
+                1. Senang
+                2. Sedih
+                3. Marah
+                4. Takut
+
+            answer nya adalah option nomer 3
+
+        3.  level : 1
+                media_type : images
+                src : /uploads/images/Berterima_Kasih.png
+                text : null
+                is_multiple_option : false
+
+             text option nya adalah:
+                1. Sedih
+                2. Takut
+                3. Senang
+                4. Marah
+
+             answer nya adalah option nomer 3

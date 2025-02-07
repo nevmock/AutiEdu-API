@@ -37,6 +37,9 @@ public class User {
     @Column(name = "is_enabled_music")
     private boolean isEnabledMusic;
 
+    @Column(name = "age")
+    private Integer age;
+
     private String token;
 
     @Column(name = "token_expired_at")

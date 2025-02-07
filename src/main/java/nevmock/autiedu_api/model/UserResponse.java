@@ -22,4 +22,5 @@ public class UserResponse {
     private String className;
     private String phoneNumber;
     private boolean isEnabledMusic;
+    private Integer age;
 }

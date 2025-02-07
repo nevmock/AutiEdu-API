@@ -2,23 +2,19 @@ package nevmock.autiedu_api.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import nevmock.autiedu_api.entity.Topic;
-import nevmock.autiedu_api.entity.User;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserTopicResponse {
+public class UpdateUserTopicRequest {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID topicId;
 
+    @NotNull
     private boolean isUnlocked;
 }

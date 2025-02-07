@@ -1,8 +1,7 @@
 package nevmock.autiedu_api.service;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
+import lombok.extern.slf4j.Slf4j;
 import nevmock.autiedu_api.entity.LearningModule;
 import nevmock.autiedu_api.entity.Topic;
 import nevmock.autiedu_api.entity.User;
@@ -18,9 +17,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.Optional;
 
+@Slf4j
 @Service
 public class UserService {
     @Autowired
@@ -49,11 +50,7 @@ public class UserService {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
-        user.setRole(request.getRole());
         user.setName(request.getName());
-        user.setClassName(request.getClassName());
-        user.setPhoneNumber(request.getPhoneNumber());
-        user.setEnabledMusic(request.isEnabledMusic());
 
         userRepository.save(user);
     }
@@ -95,6 +92,15 @@ public class UserService {
             user.setPhoneNumber(request.getPhoneNumber());
         }
 
+        if (Objects.nonNull(request.getAge())) {
+            user.setAge(request.getAge());
+        }
+
+        if (Objects.nonNull(request.isEnabledMusic())) {
+            user.setEnabledMusic(request.isEnabledMusic());
+        }
+
+
         userRepository.save(user);
 
         return UserResponse.builder()
@@ -105,7 +111,25 @@ public class UserService {
                 .className(user.getClassName())
                 .phoneNumber(user.getPhoneNumber())
                 .isEnabledMusic(user.isEnabledMusic())
+                .age(user.getAge())
                 .build();
+    }
+
+
+    @Transactional
+    public List<TopicResponse> getTopics(User user) {
+        List<UserTopic> userTopics = userTopicRepository.findAllByUser(user);
+
+        return userTopics.stream()
+                .map(userTopic -> TopicResponse.builder()
+                        .id(userTopic.getId())
+                        .name(userTopic.getTopic().getName())
+                        .description(userTopic.getTopic().getDescription())
+                        .method(userTopic.getTopic().getMethod())
+                        .level(userTopic.getTopic().getLevel())
+                        .learningModuleId(userTopic.getTopic().getLearningModule().getId())
+                        .build())
+                .toList();
     }
 
     @Transactional
@@ -120,13 +144,10 @@ public class UserService {
         topic.setLearningModule(LearningModule.builder().id(request.getLearningModuleId()).build());
 
         topicRepository.save(topic);
-
-        // save user_topic
         UserTopic userTopic = new UserTopic();
         userTopic.setUser(user);
         userTopic.setTopic(topic);
         userTopic.setUnlocked(false);
-        userTopic.setFinished(false);
         userTopicRepository.save(userTopic);
 
         return TopicResponse.builder()
@@ -136,6 +157,25 @@ public class UserService {
                 .method(topic.getMethod())
                 .level(topic.getLevel())
                 .learningModuleId(topic.getLearningModule().getId())
+                .build();
+    }
+
+    @Transactional
+    public UserTopicResponse updateTopic(User user, UpdateUserTopicRequest request) {
+        validationService.validate(request);
+
+        UserTopic userTopic = userTopicRepository
+                .findByUserIdAndTopicId(user.getId(), request.getTopicId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserTopic not found"));
+
+        log.info("userTopic: {}", userTopic);
+
+        userTopic.setUnlocked(request.isUnlocked());
+        userTopicRepository.save(userTopic);
+
+        return UserTopicResponse.builder()
+                .topicId(userTopic.getTopic().getId())
+                .isUnlocked(userTopic.isUnlocked())
                 .build();
     }
 }

@@ -23,9 +23,6 @@ public class UserQuestion {
     @Column(name = "is_unlocked")
     private boolean isUnlocked;
 
-    @Column(name = "is_finished")
-    private boolean isFinished;
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
