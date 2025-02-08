@@ -51,7 +51,6 @@ class UserControllerTest {
 
     @BeforeEach
     void setUp() {
-
         userRepository.deleteAll();
         learningModuleRepository.deleteAll();
         topicRepository.deleteAll();
@@ -179,6 +178,7 @@ class UserControllerTest {
         user.setPhoneNumber("08511111111111");
         user.setEnabledMusic(true);
         user.setToken("token");
+        user.setAge(6);
         user.setTokenExpiredAt(System.currentTimeMillis() + 1000 * 60 * 60);
 
         userRepository.save(user);
@@ -199,6 +199,7 @@ class UserControllerTest {
             assertEquals("Kevin", response.getData().getName());
             assertEquals("test", response.getData().getClassName());
             assertEquals("08511111111111", response.getData().getPhoneNumber());
+            assertEquals(6, response.getData().getAge());
             assertTrue(response.getData().isEnabledMusic());
         });
     }

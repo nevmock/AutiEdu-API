@@ -64,6 +64,7 @@ public class UserService {
                 .className(user.getClassName())
                 .phoneNumber(user.getPhoneNumber())
                 .isEnabledMusic(user.isEnabledMusic())
+                .age(user.getAge())
                 .build();
     }
 
