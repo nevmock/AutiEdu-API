@@ -21,9 +21,6 @@ public class Question {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-//    @Column(name= "topic_id")
-//    private String topicId;
-
     private Integer level;
 
     @Column(name= "media_type")
@@ -34,6 +31,7 @@ public class Question {
     @Column(name= "is_multiple_option")
     private boolean isMultipleOption;
 
+    @Column(name= "text")
     private String text;
 
     @ManyToOne

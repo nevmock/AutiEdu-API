@@ -3,13 +3,8 @@ package nevmock.autiedu_api.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import nevmock.autiedu_api.entity.LearningModule;
-import nevmock.autiedu_api.entity.Topic;
-import nevmock.autiedu_api.entity.User;
-import nevmock.autiedu_api.entity.UserTopic;
-import nevmock.autiedu_api.repository.LearningModuleRepository;
-import nevmock.autiedu_api.repository.TopicRepository;
-import nevmock.autiedu_api.repository.UserTopicRepository;
+import nevmock.autiedu_api.entity.*;
+import nevmock.autiedu_api.repository.*;
 import nevmock.autiedu_api.security.BCrypt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import nevmock.autiedu_api.model.*;
-import nevmock.autiedu_api.repository.UserRepository;
 
 import java.util.List;
 
@@ -48,17 +42,47 @@ class UserControllerTest {
     private TopicRepository topicRepository;
     @Autowired
     private UserTopicRepository userTopicRepository;
+    @Autowired
+    private UserQuestionRepository userQuestionRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
 
     @BeforeEach
     void setUp() {
         userRepository.deleteAll();
         learningModuleRepository.deleteAll();
         topicRepository.deleteAll();
+        questionRepository.deleteAll();
         userTopicRepository.deleteAll();
+        userQuestionRepository.deleteAll();
     }
 
     @Test
     void testRegisterSuccess() throws Exception {
+        LearningModule learningModule = new LearningModule();
+        learningModule.setName("Interaksi Sosial");
+        learningModule.setDescription("Desc interaksi sosisal");
+        learningModule.setMethod("video");
+        learningModuleRepository.save(learningModule);
+
+        Topic topic = new Topic();
+        topic.setName("Mencuci tangan");
+        topic.setDescription("Desc mencuci tangan");
+        topic.setMethod("video");
+        topic.setLevel(0);
+        topic.setLearningModule(learningModule);
+        topicRepository.save(topic);
+
+        Question question = new Question();
+        question.setTopic(topic);
+        question.setLevel(0);
+        question.setText("Mencuci tangan merupakan salah satu kegiatan penting yang dilakukan untuk menjaga kebersihan dan sanitasi diri");
+        question.setSrc("/uploads/videos/mencuci_tangan.mp4");
+        question.setMediaType("video");
+        question.setMultipleOption(false);
+        questionRepository.save(question);
+
+
         RegisterUserRequest request = new RegisterUserRequest();
         request.setEmail("kevin@autiedu.test");
         request.setPassword("rahasia");
@@ -76,6 +100,20 @@ class UserControllerTest {
             });
 
             assertEquals("OK", response.getData());
+
+            User user = userRepository.findByEmail("kevin@autiedu.test").orElse(null);
+            assert user != null;
+            assertTrue(BCrypt.checkpw("rahasia", user.getPassword()));
+            assertEquals("Kevin", user.getName());
+            assertEquals("user", user.getRole());
+
+            List<UserTopic> userTopics = userTopicRepository.findAllByUser(user);
+            assertNotNull(userTopics);
+            assertTrue(userTopics.size() > 0);
+
+            List<UserQuestion> userQuestions = userQuestionRepository.findAllByUser(user);
+            assertNotNull(userQuestions);
+            assertTrue(userQuestions.size() > 0);
         });
     }
 

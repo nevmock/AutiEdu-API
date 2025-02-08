@@ -2,14 +2,9 @@ package nevmock.autiedu_api.service;
 
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
-import nevmock.autiedu_api.entity.LearningModule;
-import nevmock.autiedu_api.entity.Topic;
-import nevmock.autiedu_api.entity.User;
-import nevmock.autiedu_api.entity.UserTopic;
+import nevmock.autiedu_api.entity.*;
 import nevmock.autiedu_api.model.*;
-import nevmock.autiedu_api.repository.TopicRepository;
-import nevmock.autiedu_api.repository.UserRepository;
-import nevmock.autiedu_api.repository.UserTopicRepository;
+import nevmock.autiedu_api.repository.*;
 import nevmock.autiedu_api.security.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,10 +33,15 @@ public class UserService {
 
     @Autowired
     private UserTopicRepository userTopicRepository;
+    @Autowired
+    private LearningModuleRepository learningModuleRepository;
+    @Autowired
+    private UserQuestionRepository userQuestionRepository;
 
     @Transactional
     public void register(RegisterUserRequest request) {
         validationService.validate(request);
+
 
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already registered");
@@ -51,8 +51,47 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
         user.setName(request.getName());
-
+        user.setRole("user");
         userRepository.save(user);
+
+        List<String> defaultLearningModules = List.of("Interaksi Sosial");
+
+        defaultLearningModules.forEach(learningModuleName -> {
+            try {
+                LearningModule learningModule = learningModuleRepository.findByName(learningModuleName).get();
+                log.info("Learning module: {}", learningModule);
+
+                List<Topic> topics = learningModule.getTopics();
+                log.info("Topics: {}", topics);
+                if (!topics.isEmpty()) {
+                    for (Topic topic : topics) {
+                        UserTopic userTopic = new UserTopic();
+                        userTopic.setUser(user);
+                        userTopic.setTopic(topic);
+                        userTopic.setUnlocked(false);
+                        log.info("UserTopic: {}", userTopic);
+                        userTopicRepository.save(userTopic);
+
+                        List<Question> questions = topic.getQuestions();
+
+                        if (!questions.isEmpty()) {
+                            for (Question question : questions) {
+                                UserQuestion userQuestion = new UserQuestion();
+                                userQuestion.setQuestion(question);
+                                userQuestion.setUser(user);
+                                userQuestion.setUnlocked(false);
+                                userQuestionRepository.save(userQuestion);
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                log.error("Error processing learning module {}: {}", learningModuleName, e.getMessage(), e);
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error processing learning modules");
+            }
+        });
+
+
     }
 
     public UserResponse get(User user) {
