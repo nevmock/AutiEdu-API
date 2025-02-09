@@ -13,6 +13,8 @@ import java.util.UUID;
 @Repository
 public interface UserQuestionRepository extends JpaRepository<UserQuestion, String> {
     List<UserQuestion> findAllByUser(User user);
+
+    List<UserQuestion> findAllByUserAndQuestionId(User user, UUID questionId);
 }
 
 

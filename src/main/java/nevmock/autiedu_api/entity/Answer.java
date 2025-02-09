@@ -20,12 +20,6 @@ public class Answer {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-//    @Column(name = "question_id")
-//    private String questionId;
-//
-//    @Column(name = "option_id")
-//    private String optionId;
-
     @OneToOne
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;

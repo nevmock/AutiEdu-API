@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -157,8 +158,9 @@ public class UserService {
 
 
     @Transactional
-    public List<TopicResponse> getTopics(User user) {
-        List<UserTopic> userTopics = userTopicRepository.findAllByUser(user);
+    public List<TopicResponse> getTopics(User user, UUID topicId) {
+        log.info("TopicId: {}", topicId);
+        List<UserTopic> userTopics = userTopicRepository.findAllByUserAndTopicId(user, topicId);
 
         return userTopics.stream()
                 .map(userTopic -> TopicResponse.builder()
@@ -217,5 +219,19 @@ public class UserService {
                 .topicId(userTopic.getTopic().getId())
                 .isUnlocked(userTopic.isUnlocked())
                 .build();
+    }
+
+    @Transactional
+    public List<UserQuestionResponse> getQuestion(User user, UUID questionId) {
+        List<UserQuestion> userQuestions =userQuestionRepository.findAllByUserAndQuestionId(user, questionId);
+
+        return userQuestions.stream()
+                .map(userQuestion -> UserQuestionResponse.builder()
+                        .id(userQuestion.getId())
+                        .answers(userQuestion.getQuestion().getAnswers())
+                        .options(userQuestion.getQuestion().getOptions())
+                        .isUnlocked(userQuestion.isUnlocked())
+                        .build())
+                .toList();
     }
 }

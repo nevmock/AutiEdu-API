@@ -33,7 +33,7 @@ public class QuestionService {
                         .level(question.getLevel())
                         .mediaType(question.getMediaType())
                         .src(question.getSrc())
-                        .isMultipleOption(question.isMultipleOption())
+                        .isMultipleOption(question.getIsMultipleOption())
                         .text(question.getText())
                         .build())
                 .toList();
@@ -48,7 +48,7 @@ public class QuestionService {
         question.setLevel(request.getLevel());
         question.setMediaType(request.getMediaType());
         question.setSrc(request.getSrc());
-        question.setMultipleOption(request.isMultipleOption());
+        question.setIsMultipleOption(request.isMultipleOption());
         question.setText(request.getText());
 
         questionRepository.save(question);
@@ -59,7 +59,7 @@ public class QuestionService {
                 .level(question.getLevel())
                 .mediaType(question.getMediaType())
                 .src(question.getSrc())
-                .isMultipleOption(question.isMultipleOption())
+                .isMultipleOption(question.getIsMultipleOption())
                 .text(question.getText())
                 .build();
     }

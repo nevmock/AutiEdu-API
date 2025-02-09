@@ -1,6 +1,7 @@
 package nevmock.autiedu_api.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import nevmock.autiedu_api.entity.QuestionResponse;
 import nevmock.autiedu_api.entity.User;
 import nevmock.autiedu_api.entity.UserTopic;
 import nevmock.autiedu_api.model.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.Media;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @Slf4j
@@ -73,8 +75,8 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public WebResponse<List<TopicResponse>> getUserTopic(User user) {
-        List<TopicResponse> userTopics = userService.getTopics(user);
+    public WebResponse<List<TopicResponse>> getUserTopic(User user, @RequestParam(required = true) UUID topicId) {
+        List<TopicResponse> userTopics = userService.getTopics(user, topicId);
         return WebResponse.<List<TopicResponse>>builder().data(userTopics).build();
     }
 
@@ -87,5 +89,15 @@ public class UserController {
     public WebResponse<UserTopicResponse> updateUserTopic(User user, @RequestBody UpdateUserTopicRequest request) {
         UserTopicResponse userTopicResponse = userService.updateTopic(user, request);
         return WebResponse.<UserTopicResponse>builder().data(userTopicResponse).build();
+    }
+
+    @GetMapping(
+            path = "/api/v1/users/question",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<List<UserQuestionResponse>> getUserQuestion(User user, @RequestBody UUID questionId) {
+        List<UserQuestionResponse> userQuestions = userService.getQuestion(user, questionId);
+        return WebResponse.<List<UserQuestionResponse>>builder().data(userQuestions).build();
     }
 }

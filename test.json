@@ -1,0 +1,672 @@
+{
+  "learning_module": [
+    {
+      "name": "Interaksi Sosial",
+      "topics": [
+        {
+          "title": "Mencuci Tangan",
+          "description": "Belajar mencuci tangan",
+          "method": "Mencocokan Gambar",
+          "level": 0,
+          "questions": [
+            {
+              "level": 0,
+              "media_type": "video",
+              "src": "/uploads/videos/mencuci_tangan.mp4",
+              "text": "Mencuci tangan merupakan salah satu kegiatan penting yang dilakukan untuk menjaga kebersihan dan sanitasi diri, khususnya sebelum makan.\n\nBerikut enam langkah dalam mencuci tangan yang baik dan benar:\n1. Membasahi tangan\n2. Menuang sabun\n3. Menggosok sela jari\n4. Menggosok punggung tangan\n5. Menggosok kuku\n6. Membilas tangan yang sudah dicuci\n7. Mengeringkan tangan dengan lap atau tisu kering\n\nTeman-teman jangan lupa untuk mencuci tangan sebelum makan ya!",
+              "is_multiple_option": null
+            },
+            {
+              "level": 1,
+              "media_type": "image",
+              "src": "/uploads/images/membasahi_tangan.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Membasahi Tangan",
+                "Menggosok Kuku",
+                "Menuang Sabun",
+                "Menggosok Sela Jari"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/menuang_sabun.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Mengelap Tangan",
+                "Menuang Sabun",
+                "Menggosok Kuku",
+                "Membilas Tangan"
+              ],
+              "answer": 2
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Menggosok_Sela_Jari.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Membilas Tangan",
+                "Menuang Sabun",
+                "Menggosok Sela Jari",
+                "Menggosok Punggung Tangan"
+              ],
+              "answer": 2
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Menggosok_Punggung_Tangan.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Membilas Tangan",
+                "Menuang Sabun",
+                "Menggosok Sela Jari",
+                "Menggosok Punggung Tangan"
+              ],
+              "answer": 3
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Menggosok_Kuku.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Menggosok Kuku",
+                "Membasahi Tangan ",
+                "Mengelap Tangan",
+                "Menggosok Punggung Tangan"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Mengelap_Tangan.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Menuang Sabun",
+                "Menggosok Sela Jari",
+                "Menggosok Kuku",
+                "Mengelap Tangan"
+              ],
+              "answer": 3
+            }
+          ]
+        },
+        {
+          "title": "Cara Berkomunikasi",
+          "description": "Belajar cara berkomunikasi",
+          "method": "Mencocokan Gambar",
+          "level": 1,
+          "questions": [
+            {
+              "level": 0,
+              "media_type": "video",
+              "src": "/uploads/videos/cara_berkomunikasi.mp4",
+              "text": "Berkomunikasi sangat penting untuk membantu kita dalam bersosialisasi dengan orang yang kita kenal.\n\nEmpat cara berkomunikasi:\n1. Menyapa\n2. Meminta tolong\n3. Minta maaf\n4. Berterima kasih\n\nTerapkan empat cara di atas dalam kehidupan sehari-hari ya!",
+              "is_multiple_option": null
+            },
+            {
+              "level": 1,
+              "media_type": "image",
+              "src": "/uploads/images/Menyapa.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Menyapa",
+                "Minta Tolong",
+                "Berterima Kasih",
+                "Minta Maaf"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Berterima_Kasih.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Minta Tolong",
+                "Minta Maaf",
+                "Berterima Kasih",
+                "Menyapa"
+              ],
+              "answer": 2
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Minta_Tolong.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Minta Maaf",
+                "Minta Tolong",
+                "Berterima Kasih",
+                "Menyapa"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Minta_Maaf.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Minta Maaf",
+                "Minta Tolong",
+                "Berterima Kasih",
+                "Menyapa"
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "title": "Mengenal Ekspresi",
+          "description": "Belajar mengenal ekspresi",
+          "method": "Mencocokan Gambar",
+          "level": 2,
+          "questions": [
+            {
+              "level": 0,
+              "media_type": "video",
+              "src": "/uploads/videos/mengenal_ekspresi.mp4",
+              "text": "Sebagai manusia, kita mempunyai emosi untuk mengekspresikan akan suatu hal yang terjadi\n\nEmpat jenis emosi:\n1. Senang\n2. Sedih\n3. Marah\n4. Takut\n\nKenali emosi di diri teman-teman ya!",
+              "is_multiple_option": null
+            },
+            {
+              "level": 1,
+              "media_type": "image",
+              "src": "/uploads/images/marah.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Senang",
+                "Sedih",
+                "Marah",
+                "Takut"
+              ],
+              "answer": 3
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/Berterima_Kasih.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Sedih",
+                "Takut",
+                "Senang",
+                "Marah"
+              ],
+              "answer": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Akademik",
+      "topics": [
+        {
+          "title": "Mengenal Bangun Datar",
+          "description": "Belajar mengenal bangun datar",
+          "method": "Mencocokan Gambar",
+          "level": 0,
+          "questions": [
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/persegi.png",
+              "text": "Bangun datar di atas adalah",
+              "is_multiple_option": false,
+              "options": [
+                "PERSEGI"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/persegi_panjang.png",
+              "text": "Bangun datar di atas adalah",
+              "is_multiple_option": false,
+              "options": [
+                "PERSEGI PANJANG"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/lingkaran.png",
+              "text": "Bangun datar di atas adalah",
+              "is_multiple_option": false,
+              "options": [
+                "LINGKARAN"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/segitiga.png",
+              "text": "Bangun datar di atas adalah",
+              "is_multiple_option": false,
+              "options": [
+                "SEGITIGA"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/layang_layang.png",
+              "text": "Bangun datar di atas adalah",
+              "is_multiple_option": false,
+              "options": [
+                "LAYANG-LAYANG"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/layang_layang_specific.png",
+              "text": "Bangun datar ini memiliki dua pasang sisi sama panjang yang saling berdekatan. Apakah nama bangun datar ini?",
+              "is_multiple_option": false,
+              "options": [
+                "LAYANG-LAYANG"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/multiple_shapes.png",
+              "text": "Bangun datar berikut terdiri dari beberapa bentuk. Pilih semua yang sesuai.",
+              "is_multiple_option": true,
+              "options": [
+                "SEGITIGA",
+                "PERSEGI",
+                "LINGKARAN",
+                "PERSEGI PANJANG"
+              ],
+              "answer": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Mengenal Angka",
+          "description": "Belajar mengenal angka",
+          "method": "Mencocokan Gambar",
+          "level": 1,
+          "questions": [
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_1.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "SATU"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_2.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "DUA"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_3.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "TIGA"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_4.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "EMPAT"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_5.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "LIMA"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_6.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "ENAM"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_7.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "TUJUH"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_8.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "DELAPAN"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_9.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "SEMBILAN"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/angka_0.png",
+              "text": "Angka ini disebut?",
+              "is_multiple_option": false,
+              "options": [
+                "NOL"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/angka_2.png",
+              "text": "Pilih nama yang sesuai untuk angka ini.",
+              "is_multiple_option": false,
+              "options": [
+                "SATU",
+                "DUA",
+                "TIGA",
+                "NOL"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/angka_5.png",
+              "text": "Pilih nama yang sesuai untuk angka ini.",
+              "is_multiple_option": false,
+              "options": [
+                "EMPAT",
+                "LIMA",
+                "TUJUH",
+                "NOL"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/angka_8.png",
+              "text": "Pilih nama yang sesuai untuk angka ini.",
+              "is_multiple_option": false,
+              "options": [
+                "DELAPAN",
+                "SEMBILAN",
+                "ENAM",
+                "TIGA"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/angka_6.png",
+              "text": "Pilih nama yang sesuai untuk angka ini.",
+              "is_multiple_option": true,
+              "options": [
+                "ENAM",
+                "LIMA",
+                "NOL",
+                "SATU"
+              ],
+              "answer": [
+                0,
+                1
+              ]
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/angka_9_0.png",
+              "text": "Gambar ini memiliki angka kombinasi. Pilih semua angka yang sesuai.",
+              "is_multiple_option": true,
+              "options": [
+                "DELAPAN",
+                "SEMBILAN",
+                "SATU",
+                "NOL"
+              ],
+              "answer": [
+                1,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Mencocokan jumlah benda",
+          "description": "Belajar mencocokan jumlah benda",
+          "method": "Mencocokan Gambar",
+          "level": 2,
+          "questions": [
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/bebek.png",
+              "text": "Jumlah bebek ini adalah?",
+              "is_multiple_option": false,
+              "options": [
+                "SATU",
+                "DUA",
+                "TIGA",
+                "EMPAT"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/dua_bola.png",
+              "text": "Jumlah bola ini adalah?",
+              "is_multiple_option": false,
+              "options": [
+                "SATU",
+                "DUA",
+                "TIGA",
+                "EMPAT"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/tiga_apel.png",
+              "text": "Jumlah apel ini adalah?",
+              "is_multiple_option": false,
+              "options": [
+                "DUA",
+                "TIGA",
+                "EMPAT",
+                "LIMA"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/empat_kucing.png",
+              "text": "Jumlah kucing ini adalah?",
+              "is_multiple_option": false,
+              "options": [
+                "TIGA",
+                "EMPAT",
+                "LIMA",
+                "ENAM"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 0,
+              "media_type": "images",
+              "src": "/uploads/images/lima_pensil.png",
+              "text": "Jumlah pensil ini adalah?",
+              "is_multiple_option": false,
+              "options": [
+                "EMPAT",
+                "LIMA",
+                "ENAM",
+                "TUJUH"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/tiga_ikan.png",
+              "text": "Pilih nama yang sesuai untuk benda ini.",
+              "is_multiple_option": false,
+              "options": [
+                "SATU",
+                "DUA",
+                "TIGA",
+                "EMPAT"
+              ],
+              "answer": 2
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/empat_coklat.png",
+              "text": "Pilih nama yang sesuai untuk benda ini.",
+              "is_multiple_option": false,
+              "options": [
+                "TIGA",
+                "EMPAT",
+                "LIMA",
+                "ENAM"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/tiga_kue.png",
+              "text": "Pilih nama yang sesuai untuk benda ini.",
+              "is_multiple_option": false,
+              "options": [
+                "DUA",
+                "TIGA",
+                "EMPAT",
+                "LIMA"
+              ],
+              "answer": 1
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/empat_coklat.png",
+              "text": "Pilih semua jawaban yang sesuai untuk benda ini.",
+              "is_multiple_option": true,
+              "options": [
+                "SATU",
+                "DUA",
+                "EMPAT",
+                "LIMA"
+              ],
+              "answer": [
+                2
+              ]
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/empat_coklat_3_kue.png",
+              "text": "Pilih semua jawaban yang sesuai untuk benda ini.",
+              "is_multiple_option": true,
+              "options": [
+                "DUA",
+                "EMPAT",
+                "TIGA",
+                "LIMA"
+              ],
+              "answer": [
+                1,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+

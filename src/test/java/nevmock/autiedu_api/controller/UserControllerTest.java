@@ -11,11 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import nevmock.autiedu_api.model.*;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.MockMvcBuilder.*;
@@ -47,12 +49,19 @@ class UserControllerTest {
     @Autowired
     private QuestionRepository questionRepository;
 
+    @Autowired
+    private OptionRepository optionsRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
+
     @BeforeEach
     void setUp() {
         userRepository.deleteAll();
         learningModuleRepository.deleteAll();
         topicRepository.deleteAll();
         questionRepository.deleteAll();
+        optionsRepository.deleteAll();
+        answerRepository.deleteAll();
         userTopicRepository.deleteAll();
         userQuestionRepository.deleteAll();
     }
@@ -79,7 +88,7 @@ class UserControllerTest {
         question.setText("Mencuci tangan merupakan salah satu kegiatan penting yang dilakukan untuk menjaga kebersihan dan sanitasi diri");
         question.setSrc("/uploads/videos/mencuci_tangan.mp4");
         question.setMediaType("video");
-        question.setMultipleOption(false);
+        question.setIsMultipleOption(false);
         questionRepository.save(question);
 
 
@@ -421,11 +430,10 @@ class UserControllerTest {
         userTopic.setUser(user);
         userTopicRepository.save(userTopic);
 
-
         mockMvc.perform(
                 get("/api/v1/users/topic")
-                        .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
+                        .param("topicId", topic.getId().toString())
                         .header("AUTIEDU-API-TOKEN", "token")
         ).andExpectAll(
                 status().isOk()

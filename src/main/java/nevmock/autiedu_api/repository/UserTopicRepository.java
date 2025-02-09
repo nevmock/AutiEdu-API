@@ -18,6 +18,7 @@ public interface UserTopicRepository extends JpaRepository<UserTopic, String> {
 
     boolean existsByUserIdAndTopicId(UUID userId, UUID topicId);
 
+    List<UserTopic> findAllByUserAndTopicId(User user, UUID topicId);
 }
 
 
