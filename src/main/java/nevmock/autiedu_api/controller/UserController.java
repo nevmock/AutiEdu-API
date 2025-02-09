@@ -22,6 +22,7 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @Autowired
     private UserRepository userRepository;
 
@@ -96,8 +97,18 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public WebResponse<List<UserQuestionResponse>> getUserQuestion(User user, @RequestBody UUID questionId) {
+    public WebResponse<List<UserQuestionResponse>> getUserQuestion(User user, @RequestParam(required = true) UUID questionId) {
         List<UserQuestionResponse> userQuestions = userService.getQuestion(user, questionId);
         return WebResponse.<List<UserQuestionResponse>>builder().data(userQuestions).build();
+    }
+
+    @PatchMapping(
+            path = "/api/v1/users/question",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<UserQuestionResponse> updateUserQuestion(User user, @RequestBody UpdateUserQuestionRequest request) {
+        UserQuestionResponse userQuestionResponse = userService.updateQuestion(user, request);
+        return WebResponse.<UserQuestionResponse>builder().data(userQuestionResponse).build();
     }
 }

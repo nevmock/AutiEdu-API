@@ -503,7 +503,7 @@ class UserControllerTest {
 
             UserTopic updatedUserTopic = userTopicRepository.findByUserIdAndTopicId(user.getId(), topic.getId()).orElse(null);
             assert updatedUserTopic != null;
-            assertEquals(true, updatedUserTopic.isUnlocked());
+            assertEquals(true, updatedUserTopic.getIsUnlocked());
         });
     }
 
@@ -544,6 +544,72 @@ class UserControllerTest {
             User updatedUser = userRepository.findById(user.getId()).orElse(null);
             assert updatedUser != null;
             assertEquals(false, response.getData().isEnabledMusic());
+        });
+    }
+
+    @Test
+    void getUserQuestionSuccess() throws Exception {
+        User user = new User();
+        user.setEmail("kevin@autiedu.test");
+        user.setPassword(BCrypt.hashpw("rahasia", BCrypt.gensalt()));
+        user.setRole("user");
+        user.setName("Kevin");
+        user.setClassName("test");
+        user.setPhoneNumber("08511111111111");
+        user.setEnabledMusic(true);
+        user.setToken("token");
+        user.setTokenExpiredAt(System.currentTimeMillis() + 1000 * 60 * 60);
+        userRepository.save(user);
+
+        LearningModule learningModule = new LearningModule();
+        learningModule.setName("Interaksi Sosial TEST");
+        learningModule.setDescription("Desc interaksi sosisal TEST");
+        learningModule.setMethod("video");
+        learningModuleRepository.save(learningModule);
+
+        Topic topic = new Topic();
+        topic.setName("Cuci tangan TEST");
+        topic.setDescription("Desc cuci tangan");
+        topic.setMethod("video");
+        topic.setLevel(0);
+        topic.setLearningModule(learningModule);
+        topicRepository.save(topic);
+
+        Question question = new Question();
+        question.setTopic(topic);
+        question.setLevel(1);
+        question.setIsMultipleOption(false);
+        question.setMediaType("image");
+        question.setText("Apa yang akan dikatakan?");
+        question.setSrc("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png");
+        questionRepository.save(question);
+
+        UserTopic userTopic = new UserTopic();
+        userTopic.setTopic(topic);
+        userTopic.setUser(user);
+        userTopic.setIsUnlocked(false);
+        userTopicRepository.save(userTopic);
+
+        UserQuestion userQuestion = new UserQuestion();
+        userQuestion.setQuestion(question);
+        userQuestion.setUser(user);
+        userQuestion.setIsUnlocked(false);
+        userQuestionRepository.save(userQuestion);
+
+        mockMvc.perform(
+                get("/api/v1/users/question")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("questionId", question.getId().toString())
+                        .header("AUTIEDU-API-TOKEN", "token")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<List<UserQuestionResponse>> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
+            });
+
+            assertNull(response.getErrors());
+            assertEquals(1, response.getData().size());
+            assertEquals("Apa yang akan dikatakan?", response.getData().get(0).getText());
         });
     }
 }

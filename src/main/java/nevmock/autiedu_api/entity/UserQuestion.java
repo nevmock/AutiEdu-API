@@ -21,7 +21,7 @@ public class UserQuestion {
     private UUID id;
 
     @Column(name = "is_unlocked")
-    private boolean isUnlocked;
+    private Boolean isUnlocked;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

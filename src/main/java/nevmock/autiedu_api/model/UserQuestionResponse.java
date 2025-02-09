@@ -5,6 +5,7 @@ import jakarta.persistence.GenerationType;
 import lombok.*;
 import nevmock.autiedu_api.entity.Answer;
 import nevmock.autiedu_api.entity.Option;
+import nevmock.autiedu_api.entity.Topic;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +17,13 @@ import java.util.UUID;
 public class UserQuestionResponse {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    private String mediaType;
+    private String src;
+    private Boolean isMultipleOption;
+    private String text;
+    private Integer level;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID topicId;
     private List<Option> options;
     private List<Answer> answers;
     private boolean isUnlocked;

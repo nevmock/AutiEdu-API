@@ -1,6 +1,7 @@
 package nevmock.autiedu_api.service;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import nevmock.autiedu_api.entity.CreateQuestionRequest;
 import nevmock.autiedu_api.entity.LearningModule;
 import nevmock.autiedu_api.entity.Question;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class QuestionService {
     @Autowired
@@ -52,6 +54,8 @@ public class QuestionService {
         question.setText(request.getText());
 
         questionRepository.save(question);
+
+        log.info("Question created: {}", question);
 
         return QuestionResponse.builder()
                 .id(question.getId())

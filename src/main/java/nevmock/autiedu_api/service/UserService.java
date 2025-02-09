@@ -69,7 +69,7 @@ public class UserService {
                         UserTopic userTopic = new UserTopic();
                         userTopic.setUser(user);
                         userTopic.setTopic(topic);
-                        userTopic.setUnlocked(false);
+                        userTopic.setIsUnlocked(false);
                         log.info("UserTopic: {}", userTopic);
                         userTopicRepository.save(userTopic);
 
@@ -80,7 +80,7 @@ public class UserService {
                                 UserQuestion userQuestion = new UserQuestion();
                                 userQuestion.setQuestion(question);
                                 userQuestion.setUser(user);
-                                userQuestion.setUnlocked(false);
+                                userQuestion.setIsUnlocked(false);
                                 userQuestionRepository.save(userQuestion);
                             }
                         }
@@ -189,7 +189,7 @@ public class UserService {
         UserTopic userTopic = new UserTopic();
         userTopic.setUser(user);
         userTopic.setTopic(topic);
-        userTopic.setUnlocked(false);
+        userTopic.setIsUnlocked(false);
         userTopicRepository.save(userTopic);
 
         return TopicResponse.builder()
@@ -212,26 +212,57 @@ public class UserService {
 
         log.info("userTopic: {}", userTopic);
 
-        userTopic.setUnlocked(request.isUnlocked());
+        userTopic.setIsUnlocked(request.isUnlocked());
         userTopicRepository.save(userTopic);
 
         return UserTopicResponse.builder()
                 .topicId(userTopic.getTopic().getId())
-                .isUnlocked(userTopic.isUnlocked())
+                .isUnlocked(userTopic.getIsUnlocked())
                 .build();
     }
 
     @Transactional
     public List<UserQuestionResponse> getQuestion(User user, UUID questionId) {
-        List<UserQuestion> userQuestions =userQuestionRepository.findAllByUserAndQuestionId(user, questionId);
+        List<UserQuestion> userQuestions = userQuestionRepository.findAllByUserAndQuestionId(user, questionId);
 
-        return userQuestions.stream()
+        List<UserQuestionResponse> userQuestionResponses = userQuestions.stream()
                 .map(userQuestion -> UserQuestionResponse.builder()
                         .id(userQuestion.getId())
-                        .answers(userQuestion.getQuestion().getAnswers())
+                        .mediaType(userQuestion.getQuestion().getMediaType())
+                        .src(userQuestion.getQuestion().getSrc())
+                        .isMultipleOption(userQuestion.getQuestion().getIsMultipleOption())
+                        .text(userQuestion.getQuestion().getText())
+                        .level(userQuestion.getQuestion().getLevel())
+                        .topicId(userQuestion.getQuestion().getTopic().getId())
                         .options(userQuestion.getQuestion().getOptions())
-                        .isUnlocked(userQuestion.isUnlocked())
+                        .answers(userQuestion.getQuestion().getAnswers())
                         .build())
                 .toList();
+        return userQuestionResponses;
+    }
+
+    @Transactional
+    public UserQuestionResponse updateQuestion(User user, UpdateUserQuestionRequest request) {
+        validationService.validate(request);
+
+        UserQuestion userQUestion = userQuestionRepository
+                .findByUserIdAndQuestionId(user.getId(), request.getQuestionId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserQuestion not found"));
+
+
+        userQUestion.setIsUnlocked(request.isUnlocked());
+        userQuestionRepository.save(userQUestion);
+
+        return UserQuestionResponse.builder()
+                .id(userQUestion.getId())
+                .mediaType(userQUestion.getQuestion().getMediaType())
+                .src(userQUestion.getQuestion().getSrc())
+                .isMultipleOption(userQUestion.getQuestion().getIsMultipleOption())
+                .text(userQUestion.getQuestion().getText())
+                .level(userQUestion.getQuestion().getLevel())
+                .topicId(userQUestion.getQuestion().getTopic().getId())
+                .options(userQUestion.getQuestion().getOptions())
+                .answers(userQUestion.getQuestion().getAnswers())
+                .build();
     }
 }
