@@ -428,6 +428,7 @@ class UserControllerTest {
         UserTopic userTopic = new UserTopic();
         userTopic.setTopic(topic);
         userTopic.setUser(user);
+        userTopic.setIsUnlocked(false);
         userTopicRepository.save(userTopic);
 
         mockMvc.perform(
@@ -479,6 +480,7 @@ class UserControllerTest {
         UserTopic userTopic = new UserTopic();
         userTopic.setTopic(topic);
         userTopic.setUser(user);
+        userTopic.setIsUnlocked(false);
         userTopicRepository.save(userTopic);
 
 
