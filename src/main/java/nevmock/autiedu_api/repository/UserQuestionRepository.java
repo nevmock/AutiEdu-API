@@ -18,6 +18,8 @@ public interface UserQuestionRepository extends JpaRepository<UserQuestion, Stri
     boolean existsByUserIdAndQuestionId(UUID userId, UUID questionId);
 
     List<UserQuestion> findAllByUserAndQuestionId(User user, UUID questionId);
+
+    List<UserQuestion> findAllByUserAndQuestion_Topic_Id(User user, UUID questionTopicId);
 }
 
 

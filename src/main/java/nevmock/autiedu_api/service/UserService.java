@@ -158,9 +158,8 @@ public class UserService {
 
 
     @Transactional
-    public List<TopicResponse> getTopics(User user, UUID topicId) {
-        log.info("TopicId: {}", topicId);
-        List<UserTopic> userTopics = userTopicRepository.findAllByUserAndTopicId(user, topicId);
+    public List<TopicResponse> getTopics(User user, UUID learningModuleId) {
+        List<UserTopic> userTopics = userTopicRepository.findAllByUserAndTopic_LearningModule_Id(user, learningModuleId);
 
         return userTopics.stream()
                 .map(userTopic -> TopicResponse.builder()
@@ -222,8 +221,8 @@ public class UserService {
     }
 
     @Transactional
-    public List<UserQuestionResponse> getQuestion(User user, UUID questionId) {
-        List<UserQuestion> userQuestions = userQuestionRepository.findAllByUserAndQuestionId(user, questionId);
+    public List<UserQuestionResponse> getQuestion(User user, UUID topicId) {
+        List<UserQuestion> userQuestions = userQuestionRepository.findAllByUserAndQuestion_Topic_Id(user, topicId);
 
         List<UserQuestionResponse> userQuestionResponses = userQuestions.stream()
                 .map(userQuestion -> UserQuestionResponse.builder()

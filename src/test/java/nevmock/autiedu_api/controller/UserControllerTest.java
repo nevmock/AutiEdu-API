@@ -434,7 +434,7 @@ class UserControllerTest {
         mockMvc.perform(
                 get("/api/v1/users/topic")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .param("topicId", topic.getId().toString())
+                        .param("learningModuleId", learningModule.getId().toString())
                         .header("AUTIEDU-API-TOKEN", "token")
         ).andExpectAll(
                 status().isOk()
@@ -601,7 +601,7 @@ class UserControllerTest {
         mockMvc.perform(
                 get("/api/v1/users/question")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .param("questionId", question.getId().toString())
+                        .param("topicId", topic.getId().toString())
                         .header("AUTIEDU-API-TOKEN", "token")
         ).andExpectAll(
                 status().isOk()
