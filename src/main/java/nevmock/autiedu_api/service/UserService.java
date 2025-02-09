@@ -236,6 +236,7 @@ public class UserService {
                         .topicId(userQuestion.getQuestion().getTopic().getId())
                         .options(userQuestion.getQuestion().getOptions())
                         .answers(userQuestion.getQuestion().getAnswers())
+                        .isUnlocked(userQuestion.getIsUnlocked())
                         .build())
                 .toList();
         return userQuestionResponses;
@@ -250,7 +251,7 @@ public class UserService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserQuestion not found"));
 
 
-        userQUestion.setIsUnlocked(request.isUnlocked());
+        userQUestion.setIsUnlocked(request.getIsUnlocked());
         userQuestionRepository.save(userQUestion);
 
         return UserQuestionResponse.builder()
@@ -263,6 +264,7 @@ public class UserService {
                 .topicId(userQUestion.getQuestion().getTopic().getId())
                 .options(userQUestion.getQuestion().getOptions())
                 .answers(userQUestion.getQuestion().getAnswers())
+                .isUnlocked(userQUestion.getIsUnlocked())
                 .build();
     }
 }

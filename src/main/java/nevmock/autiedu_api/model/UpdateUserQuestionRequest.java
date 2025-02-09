@@ -19,5 +19,5 @@ public class UpdateUserQuestionRequest {
     private UUID questionId;
 
     @NotNull
-    private boolean isUnlocked;
+    private Boolean isUnlocked;
 }

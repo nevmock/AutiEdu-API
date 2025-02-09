@@ -614,4 +614,74 @@ class UserControllerTest {
             assertEquals("Apa yang akan dikatakan?", response.getData().get(0).getText());
         });
     }
+
+    @Test
+    void updateUserQuestionSucess() throws Exception {
+        User user = new User();
+        user.setEmail("kevin@autiedu.test");
+        user.setPassword(BCrypt.hashpw("rahasia", BCrypt.gensalt()));
+        user.setRole("user");
+        user.setName("Kevin");
+        user.setClassName("test");
+        user.setPhoneNumber("08511111111111");
+        user.setEnabledMusic(true);
+        user.setToken("token");
+        user.setTokenExpiredAt(System.currentTimeMillis() + 1000 * 60 * 60);
+        userRepository.save(user);
+
+        LearningModule learningModule = new LearningModule();
+        learningModule.setName("Interaksi Sosial TEST");
+        learningModule.setDescription("Desc interaksi sosisal TEST");
+        learningModule.setMethod("video");
+        learningModuleRepository.save(learningModule);
+
+        Topic topic = new Topic();
+        topic.setName("Cuci tangan TEST");
+        topic.setDescription("Desc cuci tangan");
+        topic.setMethod("video");
+        topic.setLevel(0);
+        topic.setLearningModule(learningModule);
+        topicRepository.save(topic);
+
+        Question question = new Question();
+        question.setTopic(topic);
+        question.setLevel(1);
+        question.setIsMultipleOption(false);
+        question.setMediaType("image");
+        question.setText("Apa yang akan dikatakan?");
+        question.setSrc("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png");
+        questionRepository.save(question);
+
+        UserTopic userTopic = new UserTopic();
+        userTopic.setTopic(topic);
+        userTopic.setUser(user);
+        userTopic.setIsUnlocked(false);
+        userTopicRepository.save(userTopic);
+
+        UserQuestion userQuestion = new UserQuestion();
+        userQuestion.setQuestion(question);
+        userQuestion.setUser(user);
+        userQuestion.setIsUnlocked(false);
+        userQuestionRepository.save(userQuestion);
+
+        UpdateUserQuestionRequest request = new UpdateUserQuestionRequest();
+        request.setQuestionId(question.getId());
+        request.setIsUnlocked(true);
+
+        mockMvc.perform(
+                patch("/api/v1/users/question")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+                        .header("AUTIEDU-API-TOKEN", "token")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<UserQuestionResponse> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
+            });
+
+            assertNull(response.getErrors());
+            assertEquals(true, response.getData().isUnlocked());
+        });
+    }
 }
