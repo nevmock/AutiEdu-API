@@ -163,7 +163,7 @@ public class UserService {
 
         return userTopics.stream()
                 .map(userTopic -> TopicResponse.builder()
-                        .id(userTopic.getId())
+                        .id(userTopic.getTopic().getId())
                         .name(userTopic.getTopic().getName())
                         .description(userTopic.getTopic().getDescription())
                         .method(userTopic.getTopic().getMethod())
