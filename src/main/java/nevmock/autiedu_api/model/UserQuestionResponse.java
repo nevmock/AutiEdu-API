@@ -24,7 +24,7 @@ public class UserQuestionResponse {
     private Integer level;
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID topicId;
-    private List<Option> options;
-    private List<Answer> answers;
+    private List<OptionResponse> options;
+    private List<AnswerResponse> answers;
     private boolean isUnlocked;
 }

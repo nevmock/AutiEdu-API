@@ -20,9 +20,6 @@ public class Option {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-//    @Column(name= "question_id")
-//    private String questionId;
-
     private String text;
 
     @ManyToOne

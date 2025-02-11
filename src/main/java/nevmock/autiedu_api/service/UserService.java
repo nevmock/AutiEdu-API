@@ -209,8 +209,6 @@ public class UserService {
                 .findByUserIdAndTopicId(user.getId(), request.getTopicId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserTopic not found"));
 
-        log.info("userTopic: {}", userTopic);
-
         userTopic.setIsUnlocked(request.isUnlocked());
         userTopicRepository.save(userTopic);
 
@@ -233,8 +231,20 @@ public class UserService {
                         .text(userQuestion.getQuestion().getText())
                         .level(userQuestion.getQuestion().getLevel())
                         .topicId(userQuestion.getQuestion().getTopic().getId())
-                        .options(userQuestion.getQuestion().getOptions())
-                        .answers(userQuestion.getQuestion().getAnswers())
+                        .options(userQuestion.getQuestion().getOptions().stream()
+                                .map(option -> OptionResponse.builder()
+                                        .id(option.getId())
+                                        .text(option.getText())
+                                        .questionId(userQuestion.getQuestion().getId())
+                                        .build())
+                                .toList())
+                        .answers(userQuestion.getQuestion().getAnswers().stream()
+                                .map(answer -> AnswerResponse.builder()
+                                        .id(answer.getId())
+                                        .questionId(userQuestion.getQuestion().getId())
+                                        .optionId(answer.getOption().getId())
+                                        .build())
+                                .toList())
                         .isUnlocked(userQuestion.getIsUnlocked())
                         .build())
                 .toList();
@@ -245,25 +255,37 @@ public class UserService {
     public UserQuestionResponse updateQuestion(User user, UpdateUserQuestionRequest request) {
         validationService.validate(request);
 
-        UserQuestion userQUestion = userQuestionRepository
+        UserQuestion userQuestion = userQuestionRepository
                 .findByUserIdAndQuestionId(user.getId(), request.getQuestionId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserQuestion not found"));
 
 
-        userQUestion.setIsUnlocked(request.getIsUnlocked());
-        userQuestionRepository.save(userQUestion);
+        userQuestion.setIsUnlocked(request.getIsUnlocked());
+        userQuestionRepository.save(userQuestion);
 
         return UserQuestionResponse.builder()
-                .id(userQUestion.getId())
-                .mediaType(userQUestion.getQuestion().getMediaType())
-                .src(userQUestion.getQuestion().getSrc())
-                .isMultipleOption(userQUestion.getQuestion().getIsMultipleOption())
-                .text(userQUestion.getQuestion().getText())
-                .level(userQUestion.getQuestion().getLevel())
-                .topicId(userQUestion.getQuestion().getTopic().getId())
-                .options(userQUestion.getQuestion().getOptions())
-                .answers(userQUestion.getQuestion().getAnswers())
-                .isUnlocked(userQUestion.getIsUnlocked())
+                .id(userQuestion.getId())
+                .mediaType(userQuestion.getQuestion().getMediaType())
+                .src(userQuestion.getQuestion().getSrc())
+                .isMultipleOption(userQuestion.getQuestion().getIsMultipleOption())
+                .text(userQuestion.getQuestion().getText())
+                .level(userQuestion.getQuestion().getLevel())
+                .topicId(userQuestion.getQuestion().getTopic().getId())
+                .options(userQuestion.getQuestion().getOptions().stream()
+                        .map(option -> OptionResponse.builder()
+                                .id(option.getId())
+                                .text(option.getText())
+                                .questionId(userQuestion.getQuestion().getId())
+                                .build())
+                        .toList())
+                .answers(userQuestion.getQuestion().getAnswers().stream()
+                        .map(answer -> AnswerResponse.builder()
+                                .id(answer.getId())
+                                .questionId(userQuestion.getQuestion().getId())
+                                .optionId(answer.getOption().getId())
+                                .build())
+                        .toList())
+                .isUnlocked(userQuestion.getIsUnlocked())
                 .build();
     }
 }
