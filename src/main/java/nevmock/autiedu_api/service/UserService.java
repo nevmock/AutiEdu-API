@@ -108,6 +108,23 @@ public class UserService {
                 .build();
     }
 
+    public List<UserResponse> getAll() {
+        List<User> users = userRepository.findAll();
+
+        return users.stream().map(
+                userRes -> UserResponse.builder()
+                        .id(userRes.getId())
+                        .name(userRes.getName())
+                        .email(userRes.getEmail())
+                        .className(userRes.getClassName())
+                        .role(userRes.getRole())
+                        .phoneNumber(userRes.getPhoneNumber())
+                        .isEnabledMusic(userRes.isEnabledMusic())
+                        .age(userRes.getAge())
+                        .build()
+        ).toList();
+    }
+
     @Transactional
     public UserResponse update(User user, UpdateUserRequest request) {
         validationService.validate(request);

@@ -252,6 +252,50 @@ class UserControllerTest {
     }
 
     @Test
+    void getAllUserSuccess() throws Exception {
+        User user = new User();
+        user.setEmail("kevin@autiedu.test");
+        user.setPassword(BCrypt.hashpw("rahasia", BCrypt.gensalt()));
+        user.setRole("user");
+        user.setName("Kevin");
+        user.setClassName("test");
+        user.setPhoneNumber("08511111111111");
+        user.setEnabledMusic(true);
+        user.setToken("token");
+        user.setAge(6);
+        user.setTokenExpiredAt(System.currentTimeMillis() + 1000 * 60 * 60);
+
+        User user2 = new User();
+        user2.setEmail("kevin2@autiedu.test");
+        user2.setPassword(BCrypt.hashpw("rahasia", BCrypt.gensalt()));
+        user2.setRole("user");
+        user2.setName("Kevin2");
+        user2.setClassName("test");
+        user2.setPhoneNumber("08511111111111");
+        user2.setEnabledMusic(true);
+        user2.setToken("token2");
+        user2.setAge(6);
+        user2.setTokenExpiredAt(System.currentTimeMillis() + 1000 * 60 * 60);
+
+        userRepository.save(user);
+        userRepository.save(user2);
+
+        mockMvc.perform(
+                get("/api/v1/users")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("AUTIEDU-API-TOKEN", "token")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<List<UserResponse>> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
+            });
+
+            assertNull(response.getErrors());
+            assertTrue(response.getData().size() > 1);
+        });
+    }
+
+    @Test
     void getUserTokenExpired() throws Exception {
         User user = new User();
         user.setEmail("kevin@autiedu.test");
