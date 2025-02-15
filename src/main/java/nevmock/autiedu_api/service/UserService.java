@@ -55,7 +55,7 @@ public class UserService {
         user.setRole("user");
         userRepository.save(user);
 
-        List<String> defaultLearningModules = List.of("Interaksi Sosial");
+        List<String> defaultLearningModules = List.of("Interaksi Sosial", "Akademik");
 
         defaultLearningModules.forEach(learningModuleName -> {
             try {
