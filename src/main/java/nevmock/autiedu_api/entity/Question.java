@@ -1,5 +1,6 @@
 package nevmock.autiedu_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
@@ -40,6 +41,7 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "topic_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Topic topic;
 
     @OneToMany

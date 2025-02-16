@@ -92,6 +92,7 @@ class UserControllerTest {
         questionRepository.save(question);
 
 
+
         RegisterUserRequest request = new RegisterUserRequest();
         request.setEmail("kevin@autiedu.test");
         request.setPassword("rahasia");
@@ -118,11 +119,19 @@ class UserControllerTest {
 
             List<UserTopic> userTopics = userTopicRepository.findAllByUser(user);
             assertNotNull(userTopics);
-            assertTrue(userTopics.size() > 0);
+            assertFalse(userTopics.isEmpty());
+
+//            assertTrue(userTopics.stream().anyMatch(userTopic ->
+//                    userTopic.getTopic().getLearningModule().getName().equals("Akademik")
+//            ));
+//
+//            assertTrue(userTopics.stream().anyMatch(userTopic ->
+//                    userTopic.getTopic().getLearningModule().getName().equals("Interaksi Sosial")
+//            ));
 
             List<UserQuestion> userQuestions = userQuestionRepository.findAllByUser(user);
             assertNotNull(userQuestions);
-            assertTrue(userQuestions.size() > 0);
+            assertFalse(userQuestions.isEmpty());
         });
     }
 

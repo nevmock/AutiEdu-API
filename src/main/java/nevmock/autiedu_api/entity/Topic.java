@@ -1,5 +1,6 @@
 package nevmock.autiedu_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -32,6 +33,7 @@ public class Topic {
     @ManyToOne // banyak topic untuk 1 learning module
     @JoinColumn(name = "learning_module_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
+    @JsonManagedReference
     private LearningModule learningModule;
 
     @OneToMany(mappedBy = "topic")

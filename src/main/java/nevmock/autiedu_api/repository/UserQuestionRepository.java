@@ -1,5 +1,6 @@
 package nevmock.autiedu_api.repository;
 
+import nevmock.autiedu_api.entity.Question;
 import nevmock.autiedu_api.entity.User;
 import nevmock.autiedu_api.entity.UserQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;

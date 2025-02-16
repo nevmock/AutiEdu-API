@@ -1,5 +1,6 @@
 package nevmock.autiedu_api.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
 import nevmock.autiedu_api.entity.*;
@@ -39,6 +40,9 @@ public class UserService {
     @Autowired
     private UserQuestionRepository userQuestionRepository;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Transactional
     public void register(RegisterUserRequest request) {
         validationService.validate(request);
@@ -57,42 +61,33 @@ public class UserService {
 
         List<String> defaultLearningModules = List.of("Interaksi Sosial", "Akademik");
 
-        defaultLearningModules.forEach(learningModuleName -> {
-            try {
-                LearningModule learningModule = learningModuleRepository.findByName(learningModuleName).get();
-                log.info("Learning module: {}", learningModule);
+        List<LearningModule> modules = learningModuleRepository.findByNameIn(defaultLearningModules);
 
-                List<Topic> topics = learningModule.getTopics();
-                log.info("Topics: {}", topics);
-                if (!topics.isEmpty()) {
-                    for (Topic topic : topics) {
-                        UserTopic userTopic = new UserTopic();
-                        userTopic.setUser(user);
-                        userTopic.setTopic(topic);
-                        userTopic.setIsUnlocked(false);
-                        log.info("UserTopic: {}", userTopic);
-                        userTopicRepository.save(userTopic);
+        if (modules.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Default learning modules not found");
+        }
 
-                        List<Question> questions = topic.getQuestions();
+        for (LearningModule module : modules) {
+            List<Topic> topics = topicRepository.findByLearningModuleId(module.getId());
 
-                        if (!questions.isEmpty()) {
-                            for (Question question : questions) {
-                                UserQuestion userQuestion = new UserQuestion();
-                                userQuestion.setQuestion(question);
-                                userQuestion.setUser(user);
-                                userQuestion.setIsUnlocked(false);
-                                userQuestionRepository.save(userQuestion);
-                            }
-                        }
-                    }
+            for (Topic topic : topics) {
+                UserTopic userTopic = new UserTopic();
+                userTopic.setUser(user);
+                userTopic.setTopic(topic);
+                userTopic.setIsUnlocked(false);
+                userTopicRepository.save(userTopic);
+
+                List<Question> questions = topic.getQuestions();
+
+                for (Question question : questions) {
+                    UserQuestion userQuestion = new UserQuestion();
+                    userQuestion.setUser(user);
+                    userQuestion.setQuestion(question);
+                    userQuestion.setIsUnlocked(false);
+                    userQuestionRepository.save(userQuestion);
                 }
-            } catch (Exception e) {
-                log.error("Error processing learning module {}: {}", learningModuleName, e.getMessage(), e);
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error processing learning modules");
             }
-        });
-
-
+        }
     }
 
     public UserResponse get(User user) {

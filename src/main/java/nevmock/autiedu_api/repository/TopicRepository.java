@@ -20,4 +20,6 @@ public interface TopicRepository extends JpaRepository<Topic, String> {
     List<Topic> findAllByLearningModule(LearningModule learningModule);
 
     List<Topic> findByLearningModule(LearningModule learningModule);
+
+    List<Topic> findByLearningModuleId(UUID id);
 }

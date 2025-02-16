@@ -1,5 +1,6 @@
 package nevmock.autiedu_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,5 +27,6 @@ public class LearningModule {
     private String method;
 
     @OneToMany(mappedBy = "learningModule")
+    @JsonManagedReference
     private List<Topic> topics;
 }
