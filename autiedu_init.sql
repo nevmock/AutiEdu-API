@@ -287,47 +287,90 @@ VALUES (
            0
        );
 
--- Insert pertanyaan pertama (Marah)
-SET @question_expression2_id = uuid_to_bin(uuid());
+-- Pertanyaan 1 "Marah"
+SET @question1_exp_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
-VALUES (@question_expression2_id, @topic_expression_id, 'image', '/uploads/images/marah.png', NULL, FALSE, 1);
+VALUES (@question1_exp_id, @topic_expression_id, 'image', '/uploads/images/marah.png', NULL, FALSE, 1);
 
--- Insert opsi jawaban untuk pertanyaan "Marah"
+-- Opsi untuk Pertanyaan 1
+SET @option1_qe1 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option1_qe1, @question1_exp_id, 'Senang');
+
+SET @option2_qe1 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option2_qe1, @question1_exp_id, 'Sedih');
+
+SET @option3_qe1 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option3_qe1, @question1_exp_id, 'Marah');
+
+SET @option4_qe1 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option4_qe1, @question1_exp_id, 'Takut');
+
+-- Jawaban benar Pertanyaan 1
+INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question1_exp_id, @option3_qe1);
+
+-- Pertanyaan 2 "Senang"
+SET @question2_exp_id = uuid_to_bin(uuid());
+INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
+VALUES (@question2_exp_id, @topic_expression_id, 'image', '/uploads/images/senang.png', NULL, FALSE, 1);
+
+-- Opsi untuk Pertanyaan 2
 SET @option1_qe2 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option1_qe2, @question_expression2_id, 'Senang');
+INSERT INTO options (id, question_id, text) VALUES (@option1_qe2, @question2_exp_id, 'Sedih');
 
 SET @option2_qe2 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option2_qe2, @question_expression2_id, 'Sedih');
+INSERT INTO options (id, question_id, text) VALUES (@option2_qe2, @question2_exp_id, 'Takut');
 
 SET @option3_qe2 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qe2, @question_expression2_id, 'Marah');
+INSERT INTO options (id, question_id, text) VALUES (@option3_qe2, @question2_exp_id, 'Senang');
 
 SET @option4_qe2 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qe2, @question_expression2_id, 'Takut');
+INSERT INTO options (id, question_id, text) VALUES (@option4_qe2, @question2_exp_id, 'Marah');
 
--- Insert jawaban benar untuk pertanyaan "Marah"
-INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_expression2_id, @option4_qe2);
+-- Jawaban benar Pertanyaan 2
+INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question2_exp_id, @option3_qe2);
 
--- Insert pertanyaan kedua (Berterima Kasih)
-SET @question_expression3_id = uuid_to_bin(uuid());
+-- Pertanyaan 3 "Sedih"
+SET @question3_exp_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
-VALUES (@question_expression3_id, @topic_expression_id, 'image', '/uploads/images/Berterima_Kasih.png', NULL, FALSE, 1);
+VALUES (@question3_exp_id, @topic_expression_id, 'image', '/uploads/images/sedih.png', NULL, FALSE, 1);
 
--- Insert opsi jawaban untuk pertanyaan "Berterima Kasih"
+-- Opsi untuk Pertanyaan 3
 SET @option1_qe3 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option1_qe3, @question_expression3_id, 'Sedih');
+INSERT INTO options (id, question_id, text) VALUES (@option1_qe3, @question3_exp_id, 'Sedih');
 
 SET @option2_qe3 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option2_qe3, @question_expression3_id, 'Takut');
+INSERT INTO options (id, question_id, text) VALUES (@option2_qe3, @question3_exp_id, 'Takut');
 
 SET @option3_qe3 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qe3, @question_expression3_id, 'Senang');
+INSERT INTO options (id, question_id, text) VALUES (@option3_qe3, @question3_exp_id, 'Senang');
 
 SET @option4_qe3 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qe3, @question_expression3_id, 'Marah');
+INSERT INTO options (id, question_id, text) VALUES (@option4_qe3, @question3_exp_id, 'Marah');
 
--- Insert jawaban benar untuk pertanyaan "Berterima Kasih"
-INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_expression3_id, @option4_qe3);
+-- Jawaban benar Pertanyaan 3
+INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question3_exp_id, @option1_qe3);
+
+-- Pertanyaan 4 "Takut"
+SET @question4_exp_id = uuid_to_bin(uuid());
+INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
+VALUES (@question4_exp_id, @topic_expression_id, 'image', '/uploads/images/takut.png', NULL, FALSE, 1);
+
+-- Opsi untuk Pertanyaan 4
+SET @option1_qe4 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option1_qe4, @question4_exp_id, 'Sedih');
+
+SET @option2_qe4 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option2_qe4, @question4_exp_id, 'Takut');
+
+SET @option3_qe4 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option3_qe4, @question4_exp_id, 'Senang');
+
+SET @option4_qe4 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option4_qe4, @question4_exp_id, 'Marah');
+
+-- Jawaban benar Pertanyaan 4
+INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question4_exp_id, @option2_qe4);
+
 
 -- Insert learning module baru "Akademik"
 SET @learning_module_academic_id = uuid_to_bin(uuid());
@@ -600,36 +643,27 @@ INSERT INTO options (id, question_id, text) VALUES (@option4_qn12, @question_num
 -- Insert jawaban benar untuk pertanyaan "Pilih angka 5"
 INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_numbers12_id, @option2_qn12);
 
--- Insert pertanyaan ketiga belas (Multiple Choice untuk Angka 6)
-SET @question_numbers13_id = uuid_to_bin(uuid());
-INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
-VALUES (@question_numbers13_id, @topic_numbers_id, 'image', '/uploads/images/angka_6.png', 'Pilih nama yang sesuai untuk angka ini.', TRUE, 1);
-
--- Insert opsi jawaban untuk pertanyaan "Multiple Choice untuk Angka 6"
-SET @option1_qn13 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option1_qn13, @question_numbers13_id, 'ENAM');
-
-SET @option2_qn13 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option2_qn13, @question_numbers13_id, 'LIMA');
-
-SET @option3_qn13 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qn13, @question_numbers13_id, 'NOL');
-
-SET @option4_qn13 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qn13, @question_numbers13_id, 'SATU');
-
--- Insert jawaban benar untuk pertanyaan "Multiple Choice untuk Angka 6"
-INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_numbers13_id, @option1_qn13);
-INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_numbers13_id, @option2_qn13);
-
--- Insert pertanyaan keempat belas (Multiple Choice untuk kombinasi angka 9 dan 0)
+-- Insert pertanyaan keempat belas (Multiple Choice untuk kombinasi angka 4 dan 1)
 SET @question_numbers14_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
-VALUES (@question_numbers14_id, @topic_numbers_id, 'image', '/uploads/images/angka_9_0.png', 'Gambar ini memiliki angka kombinasi. Pilih semua angka yang sesuai.', TRUE, 1);
+VALUES (@question_numbers14_id, @topic_numbers_id, 'image', '/uploads/images/angka_4_1.png', 'Gambar ini memiliki angka kombinasi. Pilih semua angka yang sesuai.', TRUE, 1);
+
+-- Insert opsi jawaban untuk pertanyaan "Pilih angka 5"
+SET @option1_qn14 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option1_qn14, @question_numbers14_id, 'EMPAT');
+
+SET @option2_qn14 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option2_qn14, @question_numbers14_id, 'SATU');
+
+SET @option3_qn14 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option3_qn14, @question_numbers14_id, 'TUJUH');
+
+SET @option4_qn14 = uuid_to_bin(uuid());
+INSERT INTO options (id, question_id, text) VALUES (@option4_qn14, @question_numbers14_id, 'NOL');
 
 -- Insert jawaban benar untuk pertanyaan kombinasi angka 9 dan 0
-INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_numbers14_id, @option2_qn11);
-INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_numbers14_id, @option4_qn11);
+INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_numbers14_id, @option1_qn14);
+INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_numbers14_id, @option2_qn14);
 
 -- Insert topik baru "Mencocokan Jumlah Benda"
 SET @topic_counting_id = uuid_to_bin(uuid());

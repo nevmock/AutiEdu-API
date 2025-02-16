@@ -734,7 +734,7 @@ class UserControllerTest {
             });
 
             assertNull(response.getErrors());
-            assertEquals(true, response.getData().isUnlocked());
+            assertTrue(response.getData().isUnlocked());
         });
     }
 }

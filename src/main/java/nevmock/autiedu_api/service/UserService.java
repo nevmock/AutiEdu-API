@@ -236,7 +236,7 @@ public class UserService {
 
         List<UserQuestionResponse> userQuestionResponses = userQuestions.stream()
                 .map(userQuestion -> UserQuestionResponse.builder()
-                        .id(userQuestion.getId())
+                        .id(userQuestion.getQuestion().getId())
                         .mediaType(userQuestion.getQuestion().getMediaType())
                         .src(userQuestion.getQuestion().getSrc())
                         .isMultipleOption(userQuestion.getQuestion().getIsMultipleOption())

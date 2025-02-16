@@ -198,12 +198,12 @@
                 "Marah",
                 "Takut"
               ],
-              "answer": 3
+              "answer": 2
             },
             {
               "level": 1,
               "media_type": "images",
-              "src": "/uploads/images/Berterima_Kasih.png",
+              "src": "/uploads/images/senang.png",
               "text": null,
               "is_multiple_option": false,
               "options": [
@@ -212,7 +212,35 @@
                 "Senang",
                 "Marah"
               ],
-              "answer": 3
+              "answer": 2
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/sedih.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Sedih",
+                "Takut",
+                "Senang",
+                "Marah"
+              ],
+              "answer": 0
+            },
+            {
+              "level": 1,
+              "media_type": "images",
+              "src": "/uploads/images/takut.png",
+              "text": null,
+              "is_multiple_option": false,
+              "options": [
+                "Sedih",
+                "Takut",
+                "Senang",
+                "Marah"
+              ],
+              "answer": 1
             }
           ]
         }
