@@ -488,6 +488,7 @@ class UserControllerTest {
                 get("/api/v1/users/topic")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("learningModuleId", learningModule.getId().toString())
+                        .param("userId", user.getId().toString())
                         .header("AUTIEDU-API-TOKEN", "token")
         ).andExpectAll(
                 status().isOk()
@@ -539,6 +540,7 @@ class UserControllerTest {
 
         UpdateUserTopicRequest request = new UpdateUserTopicRequest();
         request.setTopicId(topic.getId());
+        request.setUserId(user.getId());
         request.setUnlocked(true);
 
         mockMvc.perform(
@@ -655,6 +657,7 @@ class UserControllerTest {
                 get("/api/v1/users/question")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("topicId", topic.getId().toString())
+                        .param("userId", user.getId().toString())
                         .header("AUTIEDU-API-TOKEN", "token")
         ).andExpectAll(
                 status().isOk()
@@ -720,6 +723,7 @@ class UserControllerTest {
         UpdateUserQuestionRequest request = new UpdateUserQuestionRequest();
         request.setQuestionId(question.getId());
         request.setIsUnlocked(true);
+        request.setUserId(user.getId());
 
         mockMvc.perform(
                 patch("/api/v1/users/question")

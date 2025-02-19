@@ -13,6 +13,10 @@ import java.util.UUID;
 @Builder
 public class UpdateUserTopicRequest {
     @GeneratedValue(strategy = GenerationType.UUID)
+    @NotNull
+    private UUID userId;
+
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID topicId;
 
     @NotNull

@@ -86,8 +86,8 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public WebResponse<List<TopicResponse>> getUserTopic(User user, @RequestParam(required = true) UUID learningModuleId) {
-        List<TopicResponse> userTopics = userService.getTopics(user, learningModuleId);
+    public WebResponse<List<TopicResponse>> getUserTopic(User user, @RequestParam(required = true) UUID learningModuleId, @RequestParam(required = true) UUID userId) {
+        List<TopicResponse> userTopics = userService.getTopics(user, learningModuleId, userId);
         return WebResponse.<List<TopicResponse>>builder().data(userTopics).build();
     }
 
@@ -107,8 +107,8 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public WebResponse<List<UserQuestionResponse>> getUserQuestion(User user, @RequestParam(required = true) UUID topicId) {
-        List<UserQuestionResponse> userQuestions = userService.getQuestion(user, topicId);
+    public WebResponse<List<UserQuestionResponse>> getUserQuestion(User user, @RequestParam(required = true) UUID topicId, @RequestParam(required = true) UUID userId) {
+        List<UserQuestionResponse> userQuestions = userService.getQuestion(user, userId, topicId);
         return WebResponse.<List<UserQuestionResponse>>builder().data(userQuestions).build();
     }
 

@@ -170,8 +170,9 @@ public class UserService {
 
 
     @Transactional
-    public List<TopicResponse> getTopics(User user, UUID learningModuleId) {
-        List<UserTopic> userTopics = userTopicRepository.findAllByUserAndTopic_LearningModule_Id(user, learningModuleId);
+    public List<TopicResponse> getTopics(User user, UUID learningModuleId, UUID userId) {
+        List<UserTopic> userTopics = userTopicRepository.findAllByUserAndTopic_LearningModule_Id(userRepository.findById(userId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found")), learningModuleId);
 
         return userTopics.stream()
                 .map(userTopic -> TopicResponse.builder()
@@ -181,6 +182,7 @@ public class UserService {
                         .method(userTopic.getTopic().getMethod())
                         .level(userTopic.getTopic().getLevel())
                         .learningModuleId(userTopic.getTopic().getLearningModule().getId())
+                        .isUnlocked(userTopic.getIsUnlocked())
                         .build())
                 .toList();
     }
@@ -218,7 +220,7 @@ public class UserService {
         validationService.validate(request);
 
         UserTopic userTopic = userTopicRepository
-                .findByUserIdAndTopicId(user.getId(), request.getTopicId())
+                .findByUserIdAndTopicId(request.getUserId(), request.getTopicId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserTopic not found"));
 
         userTopic.setIsUnlocked(request.isUnlocked());
@@ -231,8 +233,9 @@ public class UserService {
     }
 
     @Transactional
-    public List<UserQuestionResponse> getQuestion(User user, UUID topicId) {
-        List<UserQuestion> userQuestions = userQuestionRepository.findAllByUserAndQuestion_Topic_Id(user, topicId);
+    public List<UserQuestionResponse> getQuestion(User user, UUID userId, UUID topicId) {
+        User userFound = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        List<UserQuestion> userQuestions = userQuestionRepository.findAllByUserAndQuestion_Topic_Id(userFound, topicId);
 
         List<UserQuestionResponse> userQuestionResponses = userQuestions.stream()
                 .map(userQuestion -> UserQuestionResponse.builder()
@@ -268,7 +271,7 @@ public class UserService {
         validationService.validate(request);
 
         UserQuestion userQuestion = userQuestionRepository
-                .findByUserIdAndQuestionId(user.getId(), request.getQuestionId())
+                .findByUserIdAndQuestionId(request.getUserId(), request.getQuestionId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserQuestion not found"));
 
 

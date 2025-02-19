@@ -3,10 +3,7 @@ package nevmock.autiedu_api.model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -15,6 +12,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class UpdateUserQuestionRequest {
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID userId;
+
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID questionId;
 

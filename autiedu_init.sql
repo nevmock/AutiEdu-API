@@ -457,7 +457,7 @@ INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @qu
 -- Insert pertanyaan ketujuh (Multiple Shapes)
 SET @question_shapes7_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
-VALUES (@question_shapes7_id, @topic_shapes_id, 'image', '/uploads/images/multiple_shapes.png', 'Bangun datar berikut terdiri dari beberapa bentuk. Pilih semua yang sesuai.', TRUE, 1);
+VALUES (@question_shapes7_id, @topic_shapes_id, 'image', '/uploads/images/multiple_shapes.png', 'Bangun datar berikut terdiri dari beberapa bentuk. Pilih semua yang sesuai.', TRUE, 2);
 
 -- Insert opsi jawaban untuk pertanyaan "Multiple Shapes"
 SET @option1_qs7 = uuid_to_bin(uuid());
@@ -646,7 +646,7 @@ INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @qu
 -- Insert pertanyaan keempat belas (Multiple Choice untuk kombinasi angka 4 dan 1)
 SET @question_numbers14_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
-VALUES (@question_numbers14_id, @topic_numbers_id, 'image', '/uploads/images/angka_4_1.png', 'Gambar ini memiliki angka kombinasi. Pilih semua angka yang sesuai.', TRUE, 1);
+VALUES (@question_numbers14_id, @topic_numbers_id, 'image', '/uploads/images/angka_4_1.png', 'Gambar ini memiliki angka kombinasi. Pilih semua angka yang sesuai.', TRUE, 2);
 
 -- Insert opsi jawaban untuk pertanyaan "Pilih angka 5"
 SET @option1_qn14 = uuid_to_bin(uuid());
@@ -679,15 +679,6 @@ VALUES (@question_counting1_id, @topic_counting_id, 'image', '/uploads/images/be
 SET @option1_qc1 = uuid_to_bin(uuid());
 INSERT INTO options (id, question_id, text) VALUES (@option1_qc1, @question_counting1_id, 'SATU');
 
-SET @option2_qc1 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option2_qc1, @question_counting1_id, 'DUA');
-
-SET @option3_qc1 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qc1, @question_counting1_id, 'TIGA');
-
-SET @option4_qc1 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qc1, @question_counting1_id, 'EMPAT');
-
 -- Insert jawaban benar untuk pertanyaan "Jumlah Bebek"
 INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_counting1_id, @option1_qc1);
 
@@ -696,18 +687,8 @@ SET @question_counting2_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
 VALUES (@question_counting2_id, @topic_counting_id, 'image', '/uploads/images/dua_bola.png', 'Jumlah bola ini adalah?', FALSE, 0);
 
--- Insert opsi jawaban untuk pertanyaan "Jumlah Bola"
-SET @option1_qc2 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option1_qc2, @question_counting2_id, 'SATU');
-
 SET @option2_qc2 = uuid_to_bin(uuid());
 INSERT INTO options (id, question_id, text) VALUES (@option2_qc2, @question_counting2_id, 'DUA');
-
-SET @option3_qc2 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qc2, @question_counting2_id, 'TIGA');
-
-SET @option4_qc2 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qc2, @question_counting2_id, 'EMPAT');
 
 -- Insert jawaban benar untuk pertanyaan "Jumlah Bola"
 INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_counting2_id, @option2_qc2);
@@ -717,18 +698,8 @@ SET @question_counting3_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
 VALUES (@question_counting3_id, @topic_counting_id, 'image', '/uploads/images/tiga_apel.png', 'Jumlah apel ini adalah?', FALSE, 0);
 
--- Insert opsi jawaban untuk pertanyaan "Jumlah Apel"
-SET @option1_qc3 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option1_qc3, @question_counting3_id, 'DUA');
-
 SET @option2_qc3 = uuid_to_bin(uuid());
 INSERT INTO options (id, question_id, text) VALUES (@option2_qc3, @question_counting3_id, 'TIGA');
-
-SET @option3_qc3 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qc3, @question_counting3_id, 'EMPAT');
-
-SET @option4_qc3 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qc3, @question_counting3_id, 'LIMA');
 
 -- Insert jawaban benar untuk pertanyaan "Jumlah Apel"
 INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_counting3_id, @option2_qc3);
@@ -738,18 +709,8 @@ SET @question_counting4_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
 VALUES (@question_counting4_id, @topic_counting_id, 'image', '/uploads/images/empat_kucing.png', 'Jumlah kucing ini adalah?', FALSE, 0);
 
--- Insert opsi jawaban untuk pertanyaan "Jumlah Kucing"
-SET @option1_qc4 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option1_qc4, @question_counting4_id, 'TIGA');
-
 SET @option2_qc4 = uuid_to_bin(uuid());
 INSERT INTO options (id, question_id, text) VALUES (@option2_qc4, @question_counting4_id, 'EMPAT');
-
-SET @option3_qc4 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qc4, @question_counting4_id, 'LIMA');
-
-SET @option4_qc4 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qc4, @question_counting4_id, 'ENAM');
 
 -- Insert jawaban benar untuk pertanyaan "Jumlah Kucing"
 INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_counting4_id, @option2_qc4);
@@ -759,18 +720,8 @@ SET @question_counting5_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
 VALUES (@question_counting5_id, @topic_counting_id, 'image', '/uploads/images/lima_pensil.png', 'Jumlah pensil ini adalah?', FALSE, 0);
 
--- Insert opsi jawaban untuk pertanyaan "Jumlah Pensil"
-SET @option1_qc5 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option1_qc5, @question_counting5_id, 'EMPAT');
-
 SET @option2_qc5 = uuid_to_bin(uuid());
 INSERT INTO options (id, question_id, text) VALUES (@option2_qc5, @question_counting5_id, 'LIMA');
-
-SET @option3_qc5 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option3_qc5, @question_counting5_id, 'ENAM');
-
-SET @option4_qc5 = uuid_to_bin(uuid());
-INSERT INTO options (id, question_id, text) VALUES (@option4_qc5, @question_counting5_id, 'TUJUH');
 
 -- Insert jawaban benar untuk pertanyaan "Jumlah Pensil"
 INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @question_counting5_id, @option2_qc5);
@@ -862,7 +813,7 @@ INSERT INTO answer (id, question_id, option_id) VALUES (uuid_to_bin(uuid()), @qu
 -- Insert pertanyaan kesepuluh (Multiple Choice - 4 Coklat & 3 Kue)
 SET @question_counting10_id = uuid_to_bin(uuid());
 INSERT INTO question (id, topic_id, media_type, src, text, is_multiple_option, level)
-VALUES (@question_counting10_id, @topic_counting_id, 'image', '/uploads/images/empat_coklat_3_kue.png', 'Pilih semua jawaban yang sesuai untuk benda ini.', TRUE, 1);
+VALUES (@question_counting10_id, @topic_counting_id, 'image', '/uploads/images/empat_coklat_3_kue.png', 'Pilih semua jawaban yang sesuai untuk benda ini.', TRUE, 2);
 
 -- Insert opsi jawaban untuk pertanyaan "Multiple Choice - 4 Coklat & 3 Kue"
 SET @option1_qc10 = uuid_to_bin(uuid());

@@ -165,4 +165,40 @@ class QuestionControllerTest {
             assertNull(response.getErrors());
         });
     }
+
+
+    @Test
+    void updateSuccess() throws Exception {
+        Question question = new Question();
+        question.setTopic(topicRepository.findAll().get(0));
+        question.setLevel(1);
+        question.setMediaType("image");
+        question.setSrc("src");
+        question.setText("text");
+        questionRepository.save(question);
+
+        UpdateQuestionRequest request = new UpdateQuestionRequest();
+        request.setId(questionRepository.findAll().get(0).getId());
+        request.setTopicId(topicRepository.findAll().get(0).getId());
+        request.setLevel(1);
+        request.setMediaType("image");
+        request.setSrc("src");
+        request.setText("text");
+        request.setMultipleOption(false);
+
+        mockMvc.perform(
+                patch("/api/v1/questions")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+                        .header("AUTIEDU-API-TOKEN", "token")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<QuestionResponse> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
+            });
+
+            assertNull(response.getErrors());
+        });
+    }
 }
