@@ -6,7 +6,7 @@ DELETE
 FROM options;
 DELETE
 FROM user_question;
-DELETE
+DELETE  
 FROM user_topic;
 DELETE
 FROM question;

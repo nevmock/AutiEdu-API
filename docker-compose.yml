@@ -1,4 +1,4 @@
-version: '3'
+version: '3'897
 services:
   lysaai-core-api:
     image: kevinirawand/autiedu-api:latest
